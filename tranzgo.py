@@ -19,3 +19,23 @@
             print(f"\n    Trip: {trip.origin} -> {trip.destination}")
             print(f"    By {mode} -> Fare: {trip.fare(mode)} RWF | "
                   f"Time: {trip.time(mode)} min")
+
+    def browse(self):
+        """Feature 2: list all trips, or all places."""
+        print("\n--- Browse ---")
+        print(">>> 1. View all trips   2. View all places (A-Z)")
+        choice = input(">>> Choose an option: ").strip()
+
+        if choice == "1":
+            trips = self.database.all_trips()
+            print(f"\n    All trips ({len(trips)} total, both directions):")
+            for trip in trips:
+                print(f"    - {trip.origin} <-> {trip.destination}  "
+                      f"({trip.base_fare} RWF by bus, "
+                      f"{trip.travel_time_min} min)")
+        elif choice == "2":
+            print(f"\n    All places ({len(self.places)} total):")
+            for place in self.places:
+                print(f"    - {place}")
+        else:
+            print("    Invalid option. Returning to main menu.")
