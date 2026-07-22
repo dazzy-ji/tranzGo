@@ -39,3 +39,28 @@
                 print(f"    - {place}")
         else:
             print("    Invalid option. Returning to main menu.")
+
+    def fare_calculator(self):
+        """Feature 3: total fare for a trip and a group of passengers."""
+        print("\n--- Fare Calculator ---")
+        start = self.ask_place(">>> Enter your starting point: ")
+        destination = self.ask_place(">>> Enter your destination: ")
+
+        trip = self.database.lookup(start, destination)
+        if trip is None:
+            print(f"    Sorry, there is no direct trip from "
+                  f"{start} to {destination}.")
+            return
+
+        mode = self.ask_mode()
+        count = self.ask_count()
+        total = trip.fare(mode) * count
+
+        print("\n    ---- Fare Summary ----")
+        print(f"    Trip: {trip.origin} -> {trip.destination}")
+        print(f"    Means of transport: {mode}")
+        print(f"    Fare per person: {trip.fare(mode)} RWF")
+        print(f"    Passengers: {count}")
+        print(f"    Time: {trip.time(mode)} min")
+        print(f"    TOTAL: {total} RWF")
+        print("    ----------------------")
