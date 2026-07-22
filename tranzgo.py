@@ -1,24 +1,21 @@
-def display_trip(trip, mode="bus"):
 
-    print(f"\n    Trip: {trip['from']} -> {trip['to']}")
-    print(f"    By {mode} -> Fare: {mode_fare(trip, mode)} RWF | "
-          f"Estimated time: {mode_time(trip, mode)} min")
-    def find_trip_menu(conn, all_places):
-    print("\n--- Find a Trip ---")
+    def find_trip(self):
+        """Feature 1: find a trip and show its fare and time."""
+        print("\n--- Find a Trip ---")
+        start = self.ask_place(">>> Enter your starting point: ")
+        destination = self.ask_place(">>> Enter your destination: ")
 
-    start = prompt_for_place(">>> Enter your starting point: ", all_places)
-    destination = prompt_for_place(">>> Enter your destination: ", all_places)
+        if start == destination:
+            print("    Start and destination are the same place!")
+            return
 
-    if start == destination:
-        print("    Start and destination are the same place. No trip needed!")
-        return
+        mode = self.ask_mode()
+        trip = self.database.lookup(start, destination)
 
-    mode = choose_mode()
-
-    trip = fetch_trip(conn, start, destination)
-    if trip:
-        display_trip(trip, mode)
-    else:
-        print(f"\n    Sorry, there is no direct trip from "
-              f"{start} to {destination}.")
-
+        if trip is None:
+            print(f"\n    Sorry, there is no direct trip from "
+                  f"{start} to {destination}.")
+        else:
+            print(f"\n    Trip: {trip.origin} -> {trip.destination}")
+            print(f"    By {mode} -> Fare: {trip.fare(mode)} RWF | "
+                  f"Time: {trip.time(mode)} min")
