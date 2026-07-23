@@ -30,6 +30,7 @@ class Trip:
     def time(self, mode):
         """Travel time for this trip using the chosen means of transport."""
         return round(self.travel_time_min * MODES[mode]["time"])
+
 # Section 3: Database Class
 class TripDatabase:
     def __init__(self, connection):
