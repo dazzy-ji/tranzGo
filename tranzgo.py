@@ -74,7 +74,9 @@ class TripDatabase:
         )
         trips = [Trip(*row) for row in cursor.fetchall()]
         cursor.close()
-        return trips# Section 4: User Interface Class
+        return trips
+
+# Section 4: User Interface Class
 class TranzGoApp:
     """The menu-driven program the user interacts with."""
 
