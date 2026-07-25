@@ -6,12 +6,12 @@ import mysql.connector
 
 try:
     connection = mysql.connector.connect(
-        host='mysql-dj-alustudent-dj.i.aivencloud.com',
-        port=16865,
-        user='avnadmin',
-        password='AVNS_HmRG-kI36oO_dv4ELa-',
-        database='defaultdb',
-        ssl_disabled=False
+        host='',
+        port=,
+        user='',
+        password='',
+        database='',
+        ssl_disabled=
     )
 except mysql.connector.Error as e:
     print("Error: could not connect to the TranzGo database.")
