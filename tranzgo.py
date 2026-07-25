@@ -193,4 +193,44 @@ class TranzGoApp:
         print(f"     Time: {trip.time(mode)} min")
         print(f"     TOTAL: {total} RWF")
         print("     ----------------------")
-    
+
+ # ----- the main menu loop -----
+    def run(self):
+        """Show the welcome message, then loop over the menu until exit."""
+        print("=" * 60)
+        print("        Welcome to TranzGo - your public transport guide")
+        print("=" * 60)
+
+        while True:
+            print("\n" + "-" * 60)
+            print(">>> 1. Find a trip   2. Browse   "
+                  "3. Fare calculator   4. Exit")
+            print("-" * 60)
+            choice = input(">>> Choose an option (1-4): ").strip()
+
+            if choice == "1":
+                self.find_trip()
+            elif choice == "2":
+                self.browse()
+            elif choice == "3":
+                self.fare_calculator()
+            elif choice == "4":
+                print("\nThank you for using TranzGo. Safe travels!")
+                break
+            else:
+                print("    Please enter 1, 2, 3 or 4.")
+
+
+# ----- start the program -----
+
+def main():
+    database = TripDatabase(connection)
+    app = TranzGoApp(database)
+    try:
+        app.run()
+    finally:
+        connection.close()
+
+
+if __name__ == "__main__":
+    main()    
