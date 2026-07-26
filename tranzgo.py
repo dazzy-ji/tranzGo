@@ -58,7 +58,7 @@ class TripDatabase:
             "LIMIT 1",
             (start, destination, destination, start),
         )
-        row = cursor.fetchall()
+        row = cursor.fetchone()
         cursor.close()
 
         if row is None:
@@ -128,7 +128,7 @@ class TranzGoApp:
                 return int(answer)
             print("    Please enter a whole number of 1 or more.")
 
-        def find_trip(self):
+    def find_trip(self):
         """Feature 1: find a trip and show its fare and time."""
         print("\n--- Find a Trip ---")
         start = self.ask_place(">>> Enter your starting point: ")
