@@ -1,4 +1,6 @@
 -- TranzGo Database --
+CREATE DATABASE IF NOT EXISTS tranzgo;
+USE tranzgo;
 CREATE TABLE IF NOT EXISTS trips (
     id              INT AUTO_INCREMENT PRIMARY KEY,
     origin          VARCHAR(80) NOT NULL,
